@@ -1,0 +1,12 @@
+{
+    "sections": {
+        "header": {
+            "type": "header",
+            "settings": {
+                "mobile_menu_title": "Menu",
+                "menu": "main-menu"
+            }
+        }
+    },
+    "order": ["header"]
+}
