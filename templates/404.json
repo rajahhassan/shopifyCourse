@@ -1,13 +1,9 @@
 {
-
-    "name": "404",
-    "sections":{
-        "template-404":{
-
-            "type": "404Page"
-        }
-    },
-    "order": [
-        "template-404"
-    ]
+  "name": "404",
+  "sections": {
+    "template-404": {
+      "type": "404Page"
+    }
+  },
+  "order": ["template-404"]
 }

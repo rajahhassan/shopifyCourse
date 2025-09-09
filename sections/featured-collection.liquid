@@ -1,0 +1,64 @@
+<section class="featured-collection py-12">
+  <div class="container mx-auto px-4">
+    {% if section.settings.title != blank %}
+      <h2 class="text-3xl font-bold text-center mb-8">{{ section.settings.title }}</h2>
+    {% endif %}
+    
+    {% if section.settings.featured_collection != blank %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products %}
+          {% render 'product-card', product: product %}
+        {% else %}
+          {% for i in (1..4) %}
+            {% render 'product-card-placeholder' %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+      
+      {% if section.settings.featured_collection.products.size > 8 %}
+        <div class="text-center mt-8">
+          <a href="{{ section.settings.featured_collection.url }}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            View All Products
+          </a>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="text-center py-12">
+        <p class="text-gray-500">Please select a collection to display featured products.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+    "name": "Featured Collection",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Featured Collection",
+            "label": "Title"
+        },
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Collection"
+        },
+        {
+            "type": "range",
+            "id": "number_of_products",
+            "label": "Number of Products",
+            "default": 9,
+            "min": 4,
+            "max": 12,
+            "step": 1
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured Collection"
+        }
+    ]
+}
+{% endschema %}

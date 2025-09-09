@@ -1,0 +1,43 @@
+<div class="py-8 px-4 bg-gray-50 min-h-screen">
+
+<div class="text-center text-2xl font-bold mb-4">Collections</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+  {% for collection in collections %}
+    {% if collection.all_products_count > 0 %}
+      <div class="border bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ">
+        <a href="{{ collection.url }}" class="block">
+          {% if collection.image != blank %}
+            {% assign collection_image = collection.image %}
+          {% else %}
+            {% assign collection_image = collection.products.first.image %}
+          {% endif %}
+          
+          <div class="relative transition-all duration-1000 ease-in-out hover:scale-105 transform overflow-hidden group">
+            <img 
+              src="{{ collection_image | img_url: 'medium' }}" 
+              alt="{{ collection.title | escape }}" 
+              class="w-full h-48 object-cover "
+              width="300"
+              height="48"
+              loading="lazy"
+            >
+            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+          </div>
+          
+          <div class="p-4 bg-gray-400">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ collection.title }}</h2>
+            {% if collection.description != blank %}
+              <p class="text-gray-600 text-sm line-clamp-2">{{ collection.description }}</p>
+            {% endif %}
+            <p class="text-sm text-gray-500 mt-2">{{ collection.all_products_count }} products</p>
+          </div>
+        </a>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+</div>
+
+
+     

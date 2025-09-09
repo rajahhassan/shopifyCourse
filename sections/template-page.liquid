@@ -1,0 +1,32 @@
+            <div class="page-template max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+  <div class="mb-8 text-center">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+            {{section.settings.title}}
+    </h1>
+    {% comment %} {% if page.published_at %}
+      <p class="text-sm text-gray-600">
+        Published on {{ page.published_at | date: '%B %d, %Y' }}
+      </p>
+    {% endif %} {% endcomment %}
+  </div>
+  
+      <div class="page-content text-gray-700">
+        {{ page.content }}
+      </div>
+  
+</div>
+
+
+
+{% schema %}
+{
+    "name": "Template Page",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ]
+}
+{% endschema %}

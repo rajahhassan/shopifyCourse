@@ -41,6 +41,9 @@ class ProductModel extends HTMLElement {
         const openModalButton = this.querySelector(`button[id="productModelOpenButton_${mediaID}"]`);
 
         openModalButton.addEventListener('click', function(e) {
+            const alpineData = document.querySelector('[x-data*="productModalOpen"]').__x.$data;
+            alpineData.productModalOpen = true;
+            
             modal.querySelector("#body").innerHTML = "";
 
             const template = document.querySelector(`product-model[data-media-id="${mediaID}"] > template`);
